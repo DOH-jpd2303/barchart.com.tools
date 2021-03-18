@@ -19,7 +19,9 @@ chrome_driver <- function(download_dir,
 
   #Set options
   options <- sel$webdriver$ChromeOptions()
-  new_opt <- reticulate::dict("download.default_directory" = glue::glue("{download_dir}"))
+  new_opt <- reticulate::dict("download.default_directory" = glue::glue("{download_dir}"),
+                              'download.prompt_for_download' = 'False',
+                              'profile.default_content_setting_values.automatic_downloads'= 2)
   options$add_experimental_option("prefs", new_opt)
 
   #Load driver, set timeout length, return driver
